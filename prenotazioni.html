@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prenota Campo — Calcetto Sanda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --green: #22c55e;
+            --green-dark: #16a34a;
+            --green-dim: rgba(34,197,94,0.12);
+            --dark: #0f1a12;
+            --text: #1a2e1d;
+            --muted: #5a7a5e;
+            --bg: #f7faf7;
+            --white: #ffffff;
+            --border: #e2ede4;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Barlow', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4 { font-family: 'Barlow Condensed', sans-serif; line-height: 1.1; }
+
+        /* ===== NAVBAR ===== */
+        nav {
+            position: sticky;
+            top: 0; z-index: 1000;
+            padding: 0 32px;
+            height: 64px;
+            display: flex; align-items: center; justify-content: space-between;
+            background: rgba(15, 26, 18, 0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(34,197,94,0.15);
+        }
+        .logo {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900; font-size: 1.4rem;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: white; text-decoration: none;
+        }
+        .logo span { color: var(--green); }
+        .nav-links { display: flex; align-items: center; gap: 8px; }
+        .nav-links a {
+            color: rgba(255,255,255,0.75); text-decoration: none;
+            font-weight: 600; font-size: 0.85rem;
+            letter-spacing: 0.5px; text-transform: uppercase;
+            padding: 8px 14px; border-radius: 6px; transition: all 0.2s;
+        }
+        .nav-links a:hover { color: white; background: rgba(255,255,255,0.08); }
+
+        .hamburger {
+            display: none; flex-direction: column; cursor: pointer;
+            gap: 5px; background: none; border: none; padding: 5px;
+        }
+        .hamburger span {
+            display: block; width: 24px; height: 2px;
+            background: white; border-radius: 2px; transition: all 0.3s ease;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        .mobile-menu {
+            display: none; flex-direction: column;
+            background: rgba(15,26,18,0.98);
+            position: fixed; top: 64px; left: 0;
+            width: 100%; z-index: 999; padding: 12px 0 20px;
+            border-top: 1px solid rgba(34,197,94,0.15);
+            animation: slideDown 0.25s ease;
+        }
+        .mobile-menu.open { display: flex; }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .mobile-menu a {
+            color: rgba(255,255,255,0.8); text-decoration: none;
+            padding: 13px 28px; font-weight: 600;
+            font-size: 0.95rem; text-transform: uppercase;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            transition: background 0.2s, color 0.2s;
+        }
+        .mobile-menu a:hover { background: rgba(34,197,94,0.1); color: var(--green); }
+
+        /* ===== HERO MINI ===== */
+        .hero-mini {
+            background: linear-gradient(160deg, rgba(10,20,12,0.88) 0%, rgba(10,28,14,0.72) 100%),
+                        url('sfondo.jpg') center/cover no-repeat;
+            padding: 80px 40px 70px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        .hero-mini::after {
+            content: '';
+            position: absolute; bottom: -1px; left: 0; right: 0;
+            height: 60px;
+            background: linear-gradient(to top, var(--bg), transparent);
+        }
+        .hero-mini .badge {
+            display: inline-block;
+            background: rgba(34,197,94,0.15);
+            border: 1px solid rgba(34,197,94,0.3);
+            color: var(--green);
+            padding: 5px 14px; border-radius: 100px;
+            font-size: 0.75rem; font-weight: 700;
+            letter-spacing: 1px; text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+        .hero-mini h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 900; text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .hero-mini p { margin: 12px 0 0; color: rgba(255,255,255,0.6); font-size: 1rem; }
+
+        /* ===== INFO CARDS ===== */
+        .info-bar {
+            max-width: 900px;
+            margin: -20px auto 60px;
+            padding: 0 24px;
+            position: relative;
+            z-index: 10;
+        }
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+        .info-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px 16px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            border-bottom: 3px solid var(--green);
+        }
+        .info-card .ic-icon { font-size: 1.5rem; margin-bottom: 8px; display: block; }
+        .info-card strong {
+            display: block;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.2rem; font-weight: 900;
+            color: var(--text);
+        }
+        .info-card span { font-size: 0.78rem; color: var(--muted); font-weight: 500; }
+
+        /* ===== CALENDARIO ===== */
+        .calendar-section {
+            max-width: 900px;
+            margin: 0 auto 80px;
+            padding: 0 24px;
+        }
+        .calendar-wrapper {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+        }
+        .calendar-top {
+            padding: 24px 28px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between; gap: 16px;
+            flex-wrap: wrap;
+        }
+        .calendar-top-left h3 {
+            font-size: 1.3rem; font-weight: 900; text-transform: uppercase;
+        }
+        .calendar-top-left p { font-size: 0.85rem; color: var(--muted); margin-top: 2px; }
+        .cal-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: var(--green-dim);
+            border: 1px solid rgba(34,197,94,0.25);
+            color: var(--green-dark);
+            padding: 8px 16px; border-radius: 100px;
+            font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+
+        /* ===== REGOLE ===== */
+        .regole-section {
+            max-width: 900px;
+            margin: 0 auto 80px;
+            padding: 0 24px;
+        }
+        .regole-section h3 {
+            font-size: 1.4rem; font-weight: 900; text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .regole-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+        .regola-item {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 20px;
+            display: flex; align-items: flex-start; gap: 14px;
+        }
+        .regola-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+        .regola-item strong { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 800; text-transform: uppercase; }
+        .regola-item span { font-size: 0.82rem; color: var(--muted); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #0a100b;
+            padding: 36px 40px;
+            color: rgba(255,255,255,0.4);
+            font-size: 0.85rem;
+        }
+        .footer-inner {
+            max-width: 1100px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 16px;
+        }
+        .footer-logo {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.1rem; font-weight: 900;
+            letter-spacing: 2px; text-transform: uppercase; color: white;
+        }
+        .footer-logo span { color: var(--green); }
+        footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+        footer a:hover { color: var(--green); }
+
+        /* ===== MOBILE ===== */
+        @media (max-width: 768px) {
+            nav { padding: 0 20px; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .hero-mini { padding: 70px 24px 60px; }
+            .info-bar { margin-bottom: 40px; }
+            .info-cards { grid-template-columns: repeat(2, 1fr); }
+            .calendar-section, .regole-section { padding: 0 16px; }
+            .regole-grid { grid-template-columns: 1fr; }
+            .calendar-top { flex-direction: column; align-items: flex-start; }
+            footer { padding: 28px 20px; }
+            .footer-inner { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">CALCETTO <span>SANDA</span></a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#storia">Chi Siamo</a>
+            <a href="index.html#torneo">Speed Cup</a>
+            <a href="index.html#eventi">Tornei</a>
+            <a href="index.html#dove">Dove Siamo</a>
+        </div>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Apri menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">🏠 Home</a>
+        <a href="index.html#storia">Chi Siamo</a>
+        <a href="index.html#torneo">Speed Cup</a>
+        <a href="index.html#eventi">Tornei & Eventi</a>
+        <a href="index.html#dove">Dove Siamo</a>
+    </div>
+
+    <header class="hero-mini">
+        <div class="badge">⚽ Prenota Subito</div>
+        <h1>Prenota<br>il tuo match</h1>
+        <p>Scegli data e orario — ti aspettiamo in campo</p>
+    </header>
+
+    <div class="info-bar">
+        <div class="info-cards">
+            <div class="info-card">
+                <span class="ic-icon">⏱</span>
+                <strong>90 Min</strong>
+                <span>Durata partita</span>
+            </div>
+            <div class="info-card">
+                <span class="ic-icon">💶</span>
+                <strong>5€ / pers.</strong>
+                <span>Prezzo affitto</span>
+            </div>
+            <div class="info-card">
+                <span class="ic-icon">🚿</span>
+                <strong>Spogliatoi</strong>
+                <span>Con doccia</span>
+            </div>
+            <div class="info-card">
+                <span class="ic-icon">🦺</span>
+                <strong>Pettorine</strong>
+                <span>Sempre disponibili</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="calendar-section">
+        <div class="calendar-wrapper">
+            <div class="calendar-top">
+                <div class="calendar-top-left">
+                    <h3>Scegli il tuo slot</h3>
+                    <p>Seleziona una data disponibile dal calendario per prenotare</p>
+                </div>
+                <div class="cal-badge">✅ Conferma istantanea</div>
+            </div>
+            <div class="calendly-inline-widget" data-url="https://calendly.com/gestione-campetto/new-meeting?language=it" style="min-width:320px;height:750px;"></div>
+            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        </div>
+    </section>
+
+    <section class="regole-section">
+        <h3>Regole del Campo</h3>
+        <div class="regole-grid">
+            <div class="regola-item">
+                <span class="regola-icon">🧹</span>
+                <div>
+                    <strong>Lascia in ordine</strong>
+                    <span>Spogliatoi e campo vanno lasciati puliti dopo ogni utilizzo.</span>
+                </div>
+            </div>
+            <div class="regola-item">
+                <span class="regola-icon">⏰</span>
+                <div>
+                    <strong>Rispetta gli orari</strong>
+                    <span>Arriva qualche minuto prima. Lo slot dura 90 minuti esatti.</span>
+                </div>
+            </div>
+            <div class="regola-item">
+                <span class="regola-icon">👟</span>
+                <div>
+                    <strong>Scarpe da calcetto</strong>
+                    <span>Scarpini da erba o scarpe da calcetto. No tacchetti da calcio a 11.</span>
+                </div>
+            </div>
+            <div class="regola-item">
+                <span class="regola-icon">🤝</span>
+                <div>
+                    <strong>Fair play</strong>
+                    <span>Rispetto per tutti. Comportamento scorretto = espulsione senza rimborso.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-logo">CALCETTO <span>SANDA</span></div>
+            <div>
+                Per info: <a href="tel:+393703138099">+39 370 313 8099</a> &nbsp;|&nbsp;
+                <a href="mailto:gestione.campetto@gmail.com">gestione.campetto@gmail.com</a>
+            </div>
+            <div>&copy; 2026 Tutti i diritti riservati</div>
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('hamburgerBtn');
+        const menu = document.getElementById('mobileMenu');
+        btn.addEventListener('click', () => { btn.classList.toggle('open'); menu.classList.toggle('open'); });
+        document.addEventListener('click', (e) => {
+            if (!btn.contains(e.target) && !menu.contains(e.target)) {
+                btn.classList.remove('open');
+                menu.classList.remove('open');
+            }
+        });
+    </script>
+
+</body>
+</html>
