@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanda Speed Cup 2026 — Calcetto Sanda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green: #27ae60; --green-dark: #1e8449; --green-dim: rgba(39,174,96,0.12);
+            --dark: #0f1a12; --text: #1a2e1d; --muted: #5a7a5e;
+            --bg: #f7faf7; --border: #e2ede4;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Open Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+        /* NAVBAR */
+        nav { position: sticky; top: 0; z-index: 1000; padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; background: rgba(15,26,18,0.96); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(39,174,96,0.18); }
+        .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 3px; color: white; text-decoration: none; }
+        .logo span { color: var(--green); }
+        .nav-back { display: inline-flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.7); text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 8px 14px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.15); transition: all 0.2s; }
+        .nav-back:hover { color: white; border-color: rgba(255,255,255,0.4); }
+
+        /* HERO */
+        .news-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: stretch;
+        }
+        .news-hero-img {
+            overflow: hidden; position: relative;
+            min-height: 400px;
+        }
+        .news-hero-img img {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+        .news-hero-img::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to right, transparent 55%, var(--bg) 100%);
+        }
+        .news-hero-content {
+            background: var(--bg);
+            padding: 56px 48px 56px 36px;
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        .news-tag { display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 18px; background: rgba(230,126,34,0.12); color: #b7590a; align-self: flex-start; }
+        .news-hero-content h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem, 3.5vw, 3.2rem); letter-spacing: 2px; color: var(--text); margin-bottom: 8px; line-height: 1; }
+        .news-date { font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 700; color: var(--green); margin-bottom: 24px; }
+        .news-hero-content p { color: var(--muted); font-size: 0.93rem; line-height: 1.75; margin-bottom: 12px; }
+        .news-hero-content p strong { color: var(--text); }
+
+        /* INFO GRID */
+        .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 24px; }
+        .info-item { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+        .info-label { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--green); margin-bottom: 3px; }
+        .info-val { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 1px; color: var(--text); }
+
+        /* BODY */
+        .news-body { max-width: 720px; margin: 0 auto; padding: 60px 24px 100px; }
+        .news-body p { color: var(--muted); font-size: 0.97rem; line-height: 1.8; margin-bottom: 18px; }
+        .news-body p strong { color: var(--text); }
+        .news-callout { background: white; border: 1px solid var(--border); border-left: 4px solid var(--green); border-radius: 0 12px 12px 0; padding: 20px 24px; margin: 30px 0; }
+        .news-callout p { margin: 0; font-size: 0.93rem; }
+
+        /* COUNTDOWN */
+        .countdown-box { background: linear-gradient(135deg, #0f2d16, #174022); border-radius: 16px; padding: 30px; margin: 32px 0; text-align: center; }
+        .cd-label { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: #6ee09a; margin-bottom: 16px; }
+        .cd-blocks { display: flex; justify-content: center; gap: 10px; }
+        .cd-block { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 14px 10px; min-width: 68px; }
+        .cd-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; color: white; line-height: 1; letter-spacing: 1px; display: block; }
+        .cd-unit { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.35); margin-top: 3px; display: block; }
+
+        .news-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 36px; }
+        .btn-primary { display: inline-block; background: var(--green); color: white; padding: 14px 32px; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; border-radius: 10px; transition: all 0.25s; }
+        .btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); }
+        .btn-outline { display: inline-block; border: 2px solid var(--border); color: var(--text); padding: 12px 28px; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; border-radius: 10px; transition: all 0.25s; }
+        .btn-outline:hover { border-color: var(--green); color: var(--green); }
+
+        /* FOOTER */
+        footer { background: #0a100b; padding: 32px 40px; color: rgba(255,255,255,0.4); font-size: 0.85rem; }
+        .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 3px; color: white; }
+        .footer-logo span { color: var(--green); }
+        footer a { color: rgba(255,255,255,0.45); text-decoration: none; }
+        footer a:hover { color: var(--green); }
+
+        @media (max-width: 768px) {
+            nav { padding: 0 20px; }
+            .news-hero { grid-template-columns: 1fr; }
+            .news-hero-img { min-height: 260px; position: relative; }
+            .news-hero-img::after { background: linear-gradient(to bottom, transparent 55%, var(--bg) 100%); }
+            .news-hero-content { padding: 32px 24px 40px; }
+            .info-grid { grid-template-columns: 1fr 1fr; }
+            .news-body { padding: 36px 20px 70px; }
+            .cd-blocks { gap: 7px; }
+            .cd-block { min-width: 56px; padding: 12px 7px; }
+            .cd-num { font-size: 2rem; }
+            footer { padding: 24px 20px; }
+            .footer-inner { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">CALCETTO <span>SANDA</span></a>
+        <a href="index.html#agenda" class="nav-back">← Torna agli eventi</a>
+    </nav>
+
+    <article>
+        <div class="news-hero">
+            <div class="news-hero-img">
+                <img src="sfondo.jpg" alt="Sanda Speed Cup 2026">
+            </div>
+            <div class="news-hero-content">
+                <span class="news-tag">Torneo · 16 Maggio 2026</span>
+                <h1>Sanda<br>Speed Cup</h1>
+                <div class="news-date">📅 16 Maggio 2026 · Calcetto Sanda, San Damaso</div>
+                <p>Il <strong>primo grande torneo ufficiale</strong> del campo. 12 squadre, gironi, eliminazione diretta e un trofeo per chi arriva in cima.</p>
+                <div class="info-grid">
+                    <div class="info-item"><div class="info-label">Data</div><div class="info-val">16 Maggio 2026</div></div>
+                    <div class="info-item"><div class="info-label">Squadre</div><div class="info-val">12 Iscritte</div></div>
+                    <div class="info-item"><div class="info-label">Formato</div><div class="info-val">Gironi + K.O.</div></div>
+                    <div class="info-item"><div class="info-label">Luogo</div><div class="info-val">Calcetto Sanda</div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="news-body">
+            <div class="countdown-box">
+                <div class="cd-label">⏱ Al via tra</div>
+                <div class="cd-blocks">
+                    <div class="cd-block"><span class="cd-num" id="cd-g">--</span><span class="cd-unit">Giorni</span></div>
+                    <div class="cd-block"><span class="cd-num" id="cd-o">--</span><span class="cd-unit">Ore</span></div>
+                    <div class="cd-block"><span class="cd-num" id="cd-m">--</span><span class="cd-unit">Min</span></div>
+                    <div class="cd-block"><span class="cd-num" id="cd-s">--</span><span class="cd-unit">Sec</span></div>
+                </div>
+            </div>
+            <p>La <strong>Sanda Speed Cup</strong> è il primo torneo organizzato al nostro campo. L'idea è semplice: raccogliere le squadre del territorio, farle scontrare in un formato competitivo ma accessibile, e premiare chi arriva fino in fondo.</p>
+            <p>Il torneo si svolge in <strong>gironi preliminari</strong> seguiti da una fase a <strong>eliminazione diretta</strong>. Al vincitore va il trofeo — al resto va la soddisfazione di aver giocato bene.</p>
+            <div class="news-callout">
+                <p>📸 <strong>Aggiornamenti live il giorno del torneo</strong> — risultati, foto e classifiche su <strong>@calcetto.sanda</strong> Instagram e su questa pagina.</p>
+            </div>
+            <p>Vuoi iscrivere la tua squadra o hai domande sull'organizzazione? Contattaci direttamente su Instagram o via email.</p>
+            <div class="news-cta">
+                <a href="https://www.instagram.com/calcetto.sanda" target="_blank" class="btn-primary">Contattaci su Instagram</a>
+                <a href="prenotazioni.html" class="btn-outline">Prenota il campo →</a>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-logo">CALCETTO <span>SANDA</span></div>
+            <div>Per info: <a href="tel:+393703138099">+39 370 313 8099</a> &nbsp;|&nbsp; <a href="mailto:gestione.campetto@gmail.com">gestione.campetto@gmail.com</a></div>
+            <div>&copy; 2026 Tutti i diritti riservati</div>
+        </div>
+    </footer>
+
+    <script>
+        function tick() {
+            const diff = new Date('2026-05-16T09:00:00') - new Date();
+            if (diff <= 0) { ['cd-g','cd-o','cd-m','cd-s'].forEach(id => document.getElementById(id).textContent = '00'); return; }
+            document.getElementById('cd-g').textContent = String(Math.floor(diff/86400000)).padStart(2,'0');
+            document.getElementById('cd-o').textContent = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+            document.getElementById('cd-m').textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+            document.getElementById('cd-s').textContent = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+        }
+        tick(); setInterval(tick, 1000);
+    </script>
+</body>
+</html>

@@ -3,152 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calcetto Sanda — Il Calcio Come Deve Essere</title>
+    <title>Calcetto Sanda — San Damaso, Modena</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-
     <style>
         :root {
-            --green: #27ae60;
-            --green-dark: #1e8449;
-            --green-light: #d5f5e3;
+            --green: #27ae60; --green-dark: #1e8449;
             --green-dim: rgba(39,174,96,0.12);
-            --dark: #0f1a12;
-            --text: #1a2e1d;
-            --muted: #5a7a5e;
-            --bg: #f7faf7;
-            --white: #ffffff;
-            --border: #e2ede4;
+            --dark: #0f1a12; --text: #1a2e1d; --muted: #5a7a5e;
+            --bg: #f7faf7; --white: #ffffff; --border: #e2ede4;
         }
-
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background: var(--bg); color: var(--text);
-            line-height: 1.6; overflow-x: hidden;
-        }
+        body { font-family: 'Open Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
         h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; line-height: 1.1; }
 
         /* ===== NAVBAR ===== */
-        nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            padding: 0 32px; height: 64px;
-            display: flex; align-items: center; justify-content: space-between;
-            background: rgba(15,26,18,0.93);
-            backdrop-filter: blur(14px);
-            border-bottom: 1px solid rgba(39,174,96,0.18);
-        }
-        .logo {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.6rem; letter-spacing: 3px;
-            color: white; text-decoration: none;
-        }
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; background: rgba(15,26,18,0.93); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(39,174,96,0.18); }
+        .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 3px; color: white; text-decoration: none; }
         .logo span { color: var(--green); }
         .nav-links { display: flex; align-items: center; gap: 4px; }
-        .nav-links a {
-            color: rgba(255,255,255,0.75); text-decoration: none;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700; font-size: 0.75rem;
-            letter-spacing: 1px; text-transform: uppercase;
-            padding: 8px 12px; border-radius: 6px; transition: all 0.2s;
-        }
+        .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; padding: 8px 12px; border-radius: 6px; transition: all 0.2s; }
         .nav-links a:hover { color: white; background: rgba(255,255,255,0.08); }
         .btn-nav { background: var(--green) !important; color: white !important; border-radius: 8px !important; }
         .btn-nav:hover { background: var(--green-dark) !important; }
 
-        .hamburger {
-            display: none; flex-direction: column; cursor: pointer;
-            gap: 5px; background: none; border: none; padding: 5px;
-        }
-        .hamburger span {
-            display: block; width: 24px; height: 2px;
-            background: white; border-radius: 2px; transition: all 0.3s ease;
-        }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; background: none; border: none; padding: 5px; }
+        .hamburger span { display: block; width: 24px; height: 2px; background: white; border-radius: 2px; transition: all 0.3s ease; }
         .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
         .hamburger.open span:nth-child(2) { opacity: 0; }
         .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-        .mobile-menu {
-            display: none; flex-direction: column;
-            background: rgba(15,26,18,0.98);
-            position: fixed; top: 64px; left: 0; width: 100%; z-index: 999;
-            padding: 12px 0 20px;
-            border-top: 1px solid rgba(39,174,96,0.15);
-            animation: slideDown 0.25s ease;
-        }
+        .mobile-menu { display: none; flex-direction: column; background: rgba(15,26,18,0.98); position: fixed; top: 64px; left: 0; width: 100%; z-index: 999; padding: 12px 0 20px; border-top: 1px solid rgba(39,174,96,0.15); animation: slideDown 0.25s ease; }
         .mobile-menu.open { display: flex; }
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .mobile-menu a {
-            color: rgba(255,255,255,0.8); text-decoration: none;
-            padding: 13px 28px; font-family: 'Montserrat', sans-serif;
-            font-weight: 700; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-            transition: background 0.2s, color 0.2s;
-        }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+        .mobile-menu a { color: rgba(255,255,255,0.8); text-decoration: none; padding: 13px 28px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid rgba(255,255,255,0.06); transition: background 0.2s, color 0.2s; }
         .mobile-menu a:hover { background: rgba(39,174,96,0.1); color: var(--green); }
-        .mobile-menu .btn-mobile-cta {
-            margin: 14px 28px 4px; background: var(--green); color: white !important;
-            text-align: center; border-radius: 8px; border-bottom: none; padding: 14px 20px;
-        }
+        .mobile-menu .btn-mobile-cta { margin: 14px 28px 4px; background: var(--green); color: white !important; text-align: center; border-radius: 8px; border-bottom: none; padding: 14px 20px; }
         .mobile-menu .btn-mobile-cta:hover { background: var(--green-dark); }
 
         /* ===== HERO ===== */
-        .hero {
-            min-height: 100vh;
-            background: linear-gradient(160deg, rgba(10,20,12,0.82) 0%, rgba(10,28,14,0.65) 100%),
-                        url('sfondo.jpg') center/cover no-repeat;
-            display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
-            padding: 100px 64px 80px; position: relative; overflow: hidden;
-        }
-        .hero::after {
-            content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
-            height: 90px; background: linear-gradient(to top, var(--bg), transparent);
-        }
-        .hero-badge {
-            display: inline-flex; align-items: center; gap: 6px;
-            background: rgba(39,174,96,0.15); border: 1px solid rgba(39,174,96,0.4);
-            color: #6ee09a; padding: 6px 16px; border-radius: 100px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
-            margin-bottom: 22px; animation: fadeUp 0.6s ease both;
-        }
-        .hero h1 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(4rem, 9vw, 8rem);
-            color: white; letter-spacing: 3px; line-height: 0.95;
-            max-width: 700px; animation: fadeUp 0.6s ease 0.1s both;
-        }
-        .hero h1 em { color: var(--green); font-style: normal; }
-        .hero-sub {
-            color: rgba(255,255,255,0.65); font-size: 1.1rem;
-            max-width: 460px; margin: 24px 0 38px;
-            animation: fadeUp 0.6s ease 0.2s both;
-        }
-        .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeUp 0.6s ease 0.3s both; }
-        .btn-primary {
-            display: inline-block; background: var(--green); color: white;
-            padding: 16px 38px;
-            font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 800;
-            letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none;
-            border-radius: 10px; transition: all 0.25s;
-            box-shadow: 0 4px 24px rgba(39,174,96,0.4);
-        }
+        .hero { min-height: 100vh; background: linear-gradient(160deg, rgba(10,20,12,0.80) 0%, rgba(10,28,14,0.62) 100%), url('sfondo.jpg') center/cover no-repeat; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 80px 40px; position: relative; overflow: hidden; }
+        .hero::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 90px; background: linear-gradient(to top, var(--bg), transparent); }
+        .hero-logo-big { font-family: 'Bebas Neue', sans-serif; font-size: clamp(5rem, 15vw, 11rem); letter-spacing: 8px; color: white; line-height: 1; animation: fadeUp 0.7s ease both; text-shadow: 0 4px 40px rgba(0,0,0,0.4); }
+        .hero-logo-big span { color: var(--green); }
+        .hero-divider { width: 60px; height: 3px; background: var(--green); margin: 28px auto; border-radius: 2px; animation: fadeUp 0.6s ease 0.15s both; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(39,174,96,0.15); border: 1px solid rgba(39,174,96,0.4); color: #6ee09a; padding: 6px 18px; border-radius: 100px; font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 32px; animation: fadeUp 0.6s ease 0.25s both; }
+        .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; animation: fadeUp 0.6s ease 0.35s both; }
+        .btn-primary { display: inline-block; background: var(--green); color: white; padding: 16px 38px; font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; border-radius: 10px; transition: all 0.25s; box-shadow: 0 4px 24px rgba(39,174,96,0.4); }
         .btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(39,174,96,0.5); }
-        .btn-ghost {
-            display: inline-block; border: 2px solid rgba(255,255,255,0.35); color: white;
-            padding: 14px 32px;
-            font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 800;
-            letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none;
-            border-radius: 10px; transition: all 0.25s;
-        }
+        .btn-ghost { display: inline-block; border: 2px solid rgba(255,255,255,0.35); color: white; padding: 14px 32px; font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; border-radius: 10px; transition: all 0.25s; }
         .btn-ghost:hover { border-color: white; background: rgba(255,255,255,0.08); transform: translateY(-2px); }
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(22px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
 
         /* ===== STATS BAR ===== */
         .stats-bar { background: white; border-bottom: 1px solid var(--border); }
@@ -161,31 +65,16 @@
         /* ===== GENERICS ===== */
         section { padding: 100px 40px; }
         .container { max-width: 1100px; margin: 0 auto; }
-        .section-label {
-            display: inline-block; font-family: 'Montserrat', sans-serif;
-            font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
-            letter-spacing: 2.5px; color: var(--green); margin-bottom: 12px;
-        }
-        .section-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 3.8rem); letter-spacing: 2px;
-            color: var(--text); margin-bottom: 14px;
-        }
+        .section-label { display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px; color: var(--green); margin-bottom: 12px; }
+        .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 3.8rem); letter-spacing: 2px; color: var(--text); margin-bottom: 14px; }
         .section-title span { color: var(--green); }
         .section-sub { color: var(--muted); font-size: 0.92rem; max-width: 520px; margin-bottom: 50px; }
 
         /* ===== SERVIZI ===== */
         .servizi-section { background: var(--bg); }
         .servizi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .servizio-card {
-            background: white; border: 1px solid var(--border);
-            border-radius: 16px; padding: 32px 28px;
-            transition: all 0.25s; position: relative; overflow: hidden;
-        }
-        .servizio-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-            background: var(--green); transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
-        }
+        .servizio-card { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 32px 28px; transition: all 0.25s; position: relative; overflow: hidden; }
+        .servizio-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--green); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
         .servizio-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.08); }
         .servizio-card:hover::before { transform: scaleX(1); }
         .servizio-icon { width: 52px; height: 52px; background: var(--green-dim); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 20px; }
@@ -203,41 +92,20 @@
         .storia-text a { display: inline-flex; align-items: center; gap: 6px; color: var(--green); font-weight: 700; text-decoration: none; font-size: 0.88rem; border-bottom: 2px solid transparent; transition: border-color 0.2s; }
         .storia-text a:hover { border-color: var(--green); }
 
-        /* ===== TORNEO - VERDE INTENSO ===== */
-        .torneo-section {
-            background: linear-gradient(135deg, #0a1f0e 0%, #0f2d16 45%, #174022 100%);
-            color: white; position: relative; overflow: hidden; padding: 100px 40px;
-        }
-        .torneo-section::before {
-            content: ''; position: absolute; top: -120px; right: -160px;
-            width: 650px; height: 650px;
-            background: radial-gradient(circle, rgba(39,174,96,0.22) 0%, transparent 65%);
-            pointer-events: none;
-        }
-        .torneo-section::after {
-            content: ''; position: absolute; bottom: -100px; left: -120px;
-            width: 450px; height: 450px;
-            background: radial-gradient(circle, rgba(39,174,96,0.12) 0%, transparent 65%);
-            pointer-events: none;
-        }
-        .torneo-watermark {
-            position: absolute; right: -30px; top: 50%; transform: translateY(-50%);
-            font-family: 'Bebas Neue', sans-serif; font-size: 18rem; letter-spacing: -5px;
-            color: rgba(255,255,255,0.03); line-height: 1; pointer-events: none; user-select: none;
-        }
+        /* ===== TORNEO ===== */
+        .torneo-section { background: linear-gradient(135deg, #0a1f0e 0%, #0f2d16 45%, #174022 100%); color: white; position: relative; overflow: hidden; padding: 100px 40px; }
+        .torneo-section::before { content: ''; position: absolute; top: -120px; right: -160px; width: 650px; height: 650px; background: radial-gradient(circle, rgba(39,174,96,0.22) 0%, transparent 65%); pointer-events: none; }
+        .torneo-section::after { content: ''; position: absolute; bottom: -100px; left: -120px; width: 450px; height: 450px; background: radial-gradient(circle, rgba(39,174,96,0.12) 0%, transparent 65%); pointer-events: none; }
+        .torneo-watermark { position: absolute; right: -30px; top: 50%; transform: translateY(-50%); font-family: 'Bebas Neue', sans-serif; font-size: 18rem; letter-spacing: -5px; color: rgba(255,255,255,0.03); line-height: 1; pointer-events: none; user-select: none; }
         .torneo-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; position: relative; z-index: 1; }
         .torneo-left .section-label { color: #6ee09a; }
         .torneo-left .section-title { color: white; }
         .torneo-left .section-sub { color: rgba(255,255,255,0.5); }
         .torneo-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
-        .torneo-info-item {
-            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px; padding: 18px 16px; transition: background 0.2s;
-        }
+        .torneo-info-item { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 18px 16px; transition: background 0.2s; }
         .torneo-info-item:hover { background: rgba(39,174,96,0.14); border-color: rgba(39,174,96,0.35); }
         .ti-label { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #6ee09a; margin-bottom: 4px; }
         .ti-val { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 1px; color: white; }
-
         .countdown { background: rgba(39,174,96,0.1); border: 1px solid rgba(39,174,96,0.3); border-radius: 16px; padding: 26px; text-align: center; }
         .countdown-label { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: #6ee09a; margin-bottom: 16px; }
         .countdown-blocks { display: flex; justify-content: center; gap: 10px; }
@@ -247,7 +115,6 @@
         .torneo-update-box { margin-top: 14px; background: rgba(255,255,255,0.04); border-radius: 10px; padding: 14px 18px; text-align: left; }
         .upd-label { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--green); margin-bottom: 5px; }
         .torneo-update-box p { color: rgba(255,255,255,0.4); font-size: 0.82rem; margin: 0; }
-
         .bracket-placeholder { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 36px; text-align: center; }
         .bracket-placeholder .bp-icon { font-size: 2.8rem; margin-bottom: 12px; opacity: 0.6; display: block; }
         .bracket-placeholder h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 2px; color: white; margin-bottom: 6px; }
@@ -258,11 +125,11 @@
         .t-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--green); line-height: 1; letter-spacing: 1px; }
         .t-label { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.25); margin-top: 2px; }
 
-        /* ===== EVENTI ===== */
+        /* ===== AGENDA — solo 2 card ===== */
         .eventi-section { background: var(--bg); }
-        .eventi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .evento-card { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 28px; transition: all 0.25s; }
-        .evento-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.07); }
+        .eventi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 760px; }
+        .evento-card { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 28px; transition: all 0.25s; text-decoration: none; color: inherit; display: block; }
+        .evento-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.07); border-color: var(--green); }
         .evento-tag { display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; margin-bottom: 14px; }
         .tag-green { background: rgba(39,174,96,0.1); color: var(--green-dark); }
         .tag-orange { background: rgba(230,126,34,0.12); color: #b7590a; }
@@ -270,30 +137,87 @@
         .evento-card h3 { font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
         .evento-card p { color: var(--muted); font-size: 0.87rem; margin: 0; }
         .evento-data { font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 700; color: var(--green); margin-top: 14px; }
+        .evento-arrow { float: right; color: var(--green); font-size: 1.1rem; margin-top: -2px; opacity: 0; transition: opacity 0.2s, transform 0.2s; }
+        .evento-card:hover .evento-arrow { opacity: 1; transform: translateX(3px); }
 
         /* ===== NOVITÀ ===== */
         .novita-section { background: white; }
-        .novita-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-        .novita-card { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: all 0.25s; }
-        .novita-card:hover { box-shadow: 0 16px 40px rgba(0,0,0,0.08); transform: translateY(-3px); }
+        .novita-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .novita-card { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: all 0.25s; text-decoration: none; color: inherit; display: block; }
+        .novita-card:hover { box-shadow: 0 16px 40px rgba(0,0,0,0.08); transform: translateY(-3px); border-color: var(--green); }
         .novita-img { height: 200px; overflow: hidden; position: relative; }
         .novita-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
         .novita-card:hover .novita-img img { transform: scale(1.04); }
+        .novita-img-placeholder { height: 200px; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
         .novita-overlay { position: absolute; top: 12px; left: 12px; }
         .novita-body { padding: 22px; }
         .novita-meta { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green); margin-bottom: 7px; }
         .novita-card h4 { font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
         .novita-card p { color: var(--muted); font-size: 0.87rem; }
+        .novita-read { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--green); margin-top: 12px; display: inline-flex; align-items: center; gap: 4px; }
+        .novita-tag { display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; }
 
-        /* ===== INSTAGRAM STRIP ===== */
-        .ig-strip { background: var(--bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 0 40px; }
-        .ig-strip-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 22px 0; gap: 20px; flex-wrap: wrap; }
-        .ig-left { display: flex; align-items: center; gap: 14px; }
-        .ig-icon-wrap { width: 44px; height: 44px; background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
-        .ig-info strong { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
-        .ig-info span { font-size: 0.8rem; color: var(--muted); }
-        .btn-ig-small { display: inline-flex; align-items: center; gap: 6px; background: white; border: 1.5px solid var(--border); color: var(--text); padding: 10px 20px; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; transition: all 0.2s; }
-        .btn-ig-small:hover { border-color: #bc1888; color: #bc1888; box-shadow: 0 4px 14px rgba(188,24,136,0.12); }
+        /* ===== INSTAGRAM BLOCK ===== */
+        .ig-block {
+            background: var(--dark);
+            padding: 60px 40px;
+        }
+        .ig-block-inner {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 20px;
+        }
+        .ig-block-top {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .ig-logo-icon {
+            width: 52px; height: 52px;
+            background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+        .ig-block-text strong {
+            display: block;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem; letter-spacing: 2px; color: white;
+        }
+        .ig-block-text span {
+            font-size: 0.82rem; color: rgba(255,255,255,0.45);
+        }
+        .btn-ig {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            color: #1a1a1a;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.25s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .btn-ig:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+            background: #f5f5f5;
+        }
+        .btn-ig svg {
+            width: 20px; height: 20px;
+            flex-shrink: 0;
+        }
 
         /* ===== DOVE SIAMO ===== */
         .dove-section { background: var(--dark); padding: 0; }
@@ -317,14 +241,18 @@
             .nav-links { display: none; }
             .hamburger { display: flex; }
             section { padding: 70px 20px; }
-            .hero { padding: 90px 24px 70px; }
+            .hero { padding: 80px 24px 70px; }
+            .hero-logo-big { font-size: clamp(3.5rem, 18vw, 7rem); letter-spacing: 4px; }
             .stats-inner { flex-wrap: wrap; }
             .stat-item { flex: 1 1 50%; border-right: none; border-bottom: 1px solid var(--border); }
             .servizi-grid { grid-template-columns: 1fr; }
             .storia-grid { grid-template-columns: 1fr; gap: 40px; }
             .torneo-inner { grid-template-columns: 1fr; gap: 40px; }
             .torneo-watermark { display: none; }
-            .ig-strip { padding: 0 20px; }
+            .eventi-grid { grid-template-columns: 1fr; max-width: 100%; }
+            .novita-grid { grid-template-columns: 1fr; }
+            .ig-block { padding: 48px 24px; }
+            .ig-block-top { flex-direction: column; text-align: center; }
             .dove-header { padding: 40px 20px 24px; }
             footer { padding: 28px 20px; }
             .footer-inner { flex-direction: column; text-align: center; }
@@ -342,7 +270,8 @@
             <a href="#servizi">Servizi</a>
             <a href="#storia">Chi Siamo</a>
             <a href="#torneo">Speed Cup</a>
-            <a href="#eventi">Eventi</a>
+            <a href="#agenda">Agenda</a>
+            <a href="#novita">Novità</a>
             <a href="#dove">Dove Siamo</a>
             <a href="prenotazioni.html" class="btn-nav">Prenota Campo</a>
         </div>
@@ -355,16 +284,17 @@
         <a href="#servizi" onclick="chiudiMenu()">Servizi</a>
         <a href="#storia" onclick="chiudiMenu()">Chi Siamo</a>
         <a href="#torneo" onclick="chiudiMenu()">Speed Cup</a>
-        <a href="#eventi" onclick="chiudiMenu()">Tornei & Eventi</a>
+        <a href="#agenda" onclick="chiudiMenu()">Agenda</a>
+        <a href="#novita" onclick="chiudiMenu()">Novità</a>
         <a href="#dove" onclick="chiudiMenu()">Dove Siamo</a>
         <a href="prenotazioni.html" class="btn-mobile-cta">⚽ Prenota Campo</a>
     </div>
 
     <!-- HERO -->
     <header class="hero">
+        <div class="hero-logo-big">CALCETTO <span>SANDA</span></div>
+        <div class="hero-divider"></div>
         <div class="hero-badge">📍 San Damaso, Modena</div>
-        <h1>Il Calcio<br>Come Deve<br><em>Essere.</em></h1>
-        <p class="hero-sub">Erba naturale, spogliatoi e passione pura. Prenota il tuo slot e scendi in campo.</p>
         <div class="hero-ctas">
             <a href="prenotazioni.html" class="btn-primary">Prenota Ora</a>
             <a href="#torneo" class="btn-ghost">Speed Cup 2026 →</a>
@@ -388,21 +318,9 @@
             <h2 class="section-title">Tutto quello <span>che ti serve</span></h2>
             <p class="section-sub">Un'unica struttura pensata per chi ama il calcio sul serio.</p>
             <div class="servizi-grid">
-                <div class="servizio-card">
-                    <div class="servizio-icon">⚽</div>
-                    <h3>Erba Naturale</h3>
-                    <p>Manto in erba naturale curato per ogni partita. Comfort e qualità di gioco garantiti.</p>
-                </div>
-                <div class="servizio-card">
-                    <div class="servizio-icon">🚿</div>
-                    <h3>Spogliatoi</h3>
-                    <p>Spogliatoi con doccia disponibili per tutti i giocatori. Lasciarli in ordine è parte del gioco.</p>
-                </div>
-                <div class="servizio-card">
-                    <div class="servizio-icon">🅿️</div>
-                    <h3>Parcheggio</h3>
-                    <p>Ampio parcheggio gratuito adiacente al campo. Arrivi rilassato, giochi subito.</p>
-                </div>
+                <div class="servizio-card"><div class="servizio-icon">⚽</div><h3>Erba Naturale</h3><p>Manto in erba naturale curato per ogni partita. Comfort e qualità di gioco garantiti.</p></div>
+                <div class="servizio-card"><div class="servizio-icon">🚿</div><h3>Spogliatoi</h3><p>Spogliatoi con doccia disponibili per tutti i giocatori. Lasciarli in ordine è parte del gioco.</p></div>
+                <div class="servizio-card"><div class="servizio-icon">🅿️</div><h3>Parcheggio</h3><p>Ampio parcheggio gratuito adiacente al campo. Arrivi rilassato, giochi subito.</p></div>
             </div>
         </div>
     </section>
@@ -453,7 +371,7 @@
                         </div>
                         <div class="torneo-update-box">
                             <div class="upd-label">📸 Aggiornamenti live</div>
-                            <p>Il giorno del torneo troverai qui risultati, foto e classifiche. Segui anche @calcettosanda su Instagram.</p>
+                            <p>Il giorno del torneo troverai qui risultati, foto e classifiche. Segui anche @calcetto.sanda su Instagram.</p>
                         </div>
                     </div>
                 </div>
@@ -469,90 +387,112 @@
         </div>
     </section>
 
-    <!-- EVENTI -->
-    <section id="eventi" class="eventi-section">
+    <!-- AGENDA — solo eventi/tornei -->
+    <section id="agenda" class="eventi-section">
         <div class="container">
-            <span class="section-label">Agenda</span>
-            <h2 class="section-title">Tornei & <span>Eventi</span></h2>
-            <p class="section-sub">Aggiornamenti, tornei stagionali e serate speciali — resta sempre informato.</p>
+            <span class="section-label">Prossimi Appuntamenti</span>
+            <h2 class="section-title">Agenda <span>Eventi</span></h2>
+            <p class="section-sub">I prossimi tornei e appuntamenti in programma al campo.</p>
             <div class="eventi-grid">
-                <div class="evento-card">
+                <a href="news-speed-cup.html" class="evento-card">
                     <span class="evento-tag tag-orange">Prossimo</span>
+                    <span class="evento-arrow">→</span>
                     <h3>Sanda Speed Cup 2026</h3>
                     <p>Torneo a gironi con 12 squadre del territorio. Trofeo per i vincitori e premi a sorpresa.</p>
                     <div class="evento-data">📅 16 Maggio 2026</div>
-                </div>
-                <div class="evento-card">
+                </a>
+                <a href="news-gara-rigori.html" class="evento-card">
                     <span class="evento-tag tag-red">Rinviato</span>
+                    <span class="evento-arrow">→</span>
                     <h3>Gara di Rigori</h3>
                     <p>L'evento è stato rimandato per mancanza di iscrizioni. Torna presto per la nuova data!</p>
-                    <div class="evento-data">📅 Data da annunciare — segui Instagram</div>
-                </div>
-                <div class="evento-card">
-                    <span class="evento-tag tag-green">Novità</span>
-                    <h3>Segui le novità su Instagram</h3>
-                    <p>Per aggiornamenti in tempo reale su eventi, disponibilità e sorprese seguici sul nostro profilo.</p>
-                    <div class="evento-data">📸 @calcettosanda</div>
-                </div>
+                    <div class="evento-data">📅 Data da annunciare</div>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- NOVITÀ -->
-    <section class="novita-section">
+    <!-- NOVITÀ — solo contenuti sul campo -->
+    <section id="novita" class="novita-section">
         <div class="container">
-            <span class="section-label">News</span>
+            <span class="section-label">Dal Campo</span>
             <h2 class="section-title">Ultime <span>Novità</span></h2>
-            <p class="section-sub">Le ultime dal campo — segui anche Instagram per aggiornamenti in tempo reale.</p>
+            <p class="section-sub">Aggiornamenti sul campo, regolamenti e novità stagionali.</p>
             <div class="novita-grid">
-                <div class="novita-card">
+                <a href="news-apertura.html" class="novita-card">
                     <div class="novita-img">
-                        <img src="sfondo.jpg" alt="Il campo apre">
+                        <img src="inaugurazione.JPG" alt="Inaugurazione del campo">
                         <div class="novita-overlay"><span class="novita-tag tag-green">Apertura</span></div>
                     </div>
                     <div class="novita-body">
-                        <div class="novita-meta">Maggio 2026</div>
-                        <h4>Il campo apre!</h4>
-                        <p>Dopo mesi di lavori siamo pronti. Il campo è ufficialmente prenotabile. Vi aspettiamo in campo!</p>
+                        <div class="novita-meta">4 Ottobre 2025</div>
+                        <h4>Inaugurazione del campo!</h4>
+                        <p>Sabato 4 ottobre 2025 abbiamo aperto ufficialmente il campo con partita inaugurale e stand aperitivo.</p>
+                        <div class="novita-read">Leggi →</div>
                     </div>
-                </div>
-                <div class="novita-card">
-                    <div class="novita-img">
-                        <img src="Gara_rigori_rimandata.png" alt="Gara di Rigori Rimandata" style="object-position: top;">
-                        <div class="novita-overlay"><span class="novita-tag tag-red">Rinviato</span></div>
-                    </div>
-                    <div class="novita-body">
-                        <div class="novita-meta">Evento • Data da annunciare</div>
-                        <h4>Gara di Rigori — rimandata</h4>
-                        <p>L'evento è stato rimandato per mancanza di iscrizioni. Segui @calcettosanda per la nuova data.</p>
-                    </div>
-                </div>
-                <div class="novita-card">
-                    <div class="novita-img">
-                        <img src="foto1.jpg" alt="Inaugurazione">
-                        <div class="novita-overlay"><span class="novita-tag tag-orange">Torneo</span></div>
+                </a>
+                <a href="news-regolamento.html" class="novita-card">
+                    <div class="novita-img novita-img-placeholder" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9);">
+                        📋
                     </div>
                     <div class="novita-body">
-                        <div class="novita-meta">16 Maggio 2026</div>
-                        <h4>Sanda Speed Cup — iscrizioni aperte</h4>
-                        <p>12 squadre, gironi + eliminazione diretta. Contattaci su Instagram per iscrivere la tua squadra.</p>
+                        <div class="novita-meta">Info · Campo</div>
+                        <h4>Regolamento del Campo</h4>
+                        <p>Tutto quello che c'è da sapere prima di scendere in campo: regole, comportamenti e orari.</p>
+                        <div class="novita-read">Leggi →</div>
                     </div>
-                </div>
+                </a>
+                <a href="news-riapertura.html" class="novita-card">
+                    <div class="novita-img">
+                        <img src="sfondo.jpg" alt="Riapertura stagionale">
+                        <div class="novita-overlay"><span class="novita-tag tag-orange">Stagione</span></div>
+                    </div>
+                    <div class="novita-body">
+                        <div class="novita-meta">Prossimamente</div>
+                        <h4>Riapertura Stagionale</h4>
+                        <p>La pagina verrà aggiornata con le informazioni sulla prossima riapertura stagionale.</p>
+                        <div class="novita-read">Leggi →</div>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- INSTAGRAM STRIP -->
-    <div class="ig-strip">
-        <div class="ig-strip-inner">
-            <div class="ig-left">
-                <div class="ig-icon-wrap">📸</div>
-                <div class="ig-info">
-                    <strong>@calcettosanda</strong>
-                    <span>Segui per tornei, eventi e aggiornamenti in tempo reale</span>
+    <!-- INSTAGRAM BLOCK -->
+    <div class="ig-block">
+        <div class="ig-block-inner">
+            <div class="ig-block-top">
+                <div class="ig-logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="26" height="26">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="white" stroke-width="2"/>
+                        <circle cx="12" cy="12" r="4" stroke="white" stroke-width="2"/>
+                        <circle cx="17.5" cy="6.5" r="1.2" fill="white"/>
+                    </svg>
+                </div>
+                <div class="ig-block-text">
+                    <strong>@calcetto.sanda</strong>
+                    <span>Tornei, eventi e aggiornamenti in tempo reale</span>
                 </div>
             </div>
-            <a href="https://www.instagram.com/calcettosanda" target="_blank" class="btn-ig-small">Seguici su Instagram →</a>
+            <a href="https://www.instagram.com/calcetto.sanda" target="_blank" class="btn-ig">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="url(#ig)" stroke-width="2"/>
+                    <circle cx="12" cy="12" r="4" stroke="url(#ig)" stroke-width="2"/>
+                    <circle cx="17.5" cy="6.5" r="1.2" fill="url(#ig2)"/>
+                    <defs>
+                        <linearGradient id="ig" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#f09433"/>
+                            <stop offset="50%" stop-color="#dc2743"/>
+                            <stop offset="100%" stop-color="#bc1888"/>
+                        </linearGradient>
+                        <linearGradient id="ig2" x1="16" y1="5" x2="19" y2="8" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#f09433"/>
+                            <stop offset="100%" stop-color="#bc1888"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                Seguici su Instagram
+            </a>
         </div>
     </div>
 
@@ -564,20 +504,14 @@
             <p>Str. Chiesa Collegara 7, San Damaso (MO) — parcheggio gratuito adiacente.</p>
         </div>
         <div class="map-container">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2000!2d10.9784!3d44.6001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477fe64af577c4f3%3A0x7dcf86c6e8457a6f!2sStr.%20Chiesa%20Collegara%2C%207%2C%2041126%20San%20Damaso%20MO!5e0!3m2!1sit!2sit!4v1700000000000"
-                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2000!2d10.9784!3d44.6001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477fe64af577c4f3%3A0x7dcf86c6e8457a6f!2sStr.%20Chiesa%20Collegara%2C%207%2C%2041126%20San%20Damaso%20MO!5e0!3m2!1sit!2sit!4v1700000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </section>
 
     <footer>
         <div class="footer-inner">
             <div class="footer-logo">CALCETTO <span>SANDA</span></div>
-            <div>
-                Per info: <a href="tel:+393703138099">+39 370 313 8099</a> &nbsp;|&nbsp;
-                <a href="mailto:gestione.campetto@gmail.com">gestione.campetto@gmail.com</a>
-            </div>
+            <div>Per info: <a href="tel:+393703138099">+39 370 313 8099</a> &nbsp;|&nbsp; <a href="mailto:gestione.campetto@gmail.com">gestione.campetto@gmail.com</a></div>
             <div>&copy; 2026 Tutti i diritti riservati</div>
         </div>
     </footer>
@@ -587,31 +521,20 @@
         const menu = document.getElementById('mobileMenu');
         btn.addEventListener('click', () => { btn.classList.toggle('open'); menu.classList.toggle('open'); });
         function chiudiMenu() { btn.classList.remove('open'); menu.classList.remove('open'); }
-        document.addEventListener('click', (e) => {
-            if (!btn.contains(e.target) && !menu.contains(e.target)) chiudiMenu();
-        });
+        document.addEventListener('click', (e) => { if (!btn.contains(e.target) && !menu.contains(e.target)) chiudiMenu(); });
 
-        // Countdown 16 maggio 2026
         function aggiornaCountdown() {
-            const target = new Date('2026-05-16T09:00:00');
-            const diff = target - new Date();
-            if (diff <= 0) {
-                ['cd-giorni','cd-ore','cd-min','cd-sec'].forEach(id => document.getElementById(id).textContent = '00');
-                return;
-            }
-            document.getElementById('cd-giorni').textContent = String(Math.floor(diff / 86400000)).padStart(2,'0');
-            document.getElementById('cd-ore').textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
-            document.getElementById('cd-min').textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
-            document.getElementById('cd-sec').textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2,'0');
+            const diff = new Date('2026-05-16T09:00:00') - new Date();
+            if (diff <= 0) { ['cd-giorni','cd-ore','cd-min','cd-sec'].forEach(id => document.getElementById(id).textContent = '00'); return; }
+            document.getElementById('cd-giorni').textContent = String(Math.floor(diff/86400000)).padStart(2,'0');
+            document.getElementById('cd-ore').textContent = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+            document.getElementById('cd-min').textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+            document.getElementById('cd-sec').textContent = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
         }
-        aggiornaCountdown();
-        setInterval(aggiornaCountdown, 1000);
+        aggiornaCountdown(); setInterval(aggiornaCountdown, 1000);
 
-        // Teams grid
         const grid = document.getElementById('teamsGrid');
-        for (let i = 1; i <= 12; i++) {
-            grid.innerHTML += `<div class="team-slot"><div class="t-num">${i}</div><div class="t-label">Squadra ${i}</div></div>`;
-        }
+        for (let i = 1; i <= 12; i++) grid.innerHTML += `<div class="team-slot"><div class="t-num">${i}</div><div class="t-label">Squadra ${i}</div></div>`;
     </script>
 </body>
 </html>
